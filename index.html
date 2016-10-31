@@ -25,8 +25,27 @@
   .message {
     margin: 1em 0;
   }
+#button1:hover{
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  transform: rotate(360deg);}
+#button1{
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+color:blue;
+border-style:solid;
+border-color:red;
+border-width:20px;
+position:absolute;
+margin-left:400px;
+}
 </style>
-
+<button type="button" id="button1"> Here's a button!!!</button>
 <div id="chat">
   <div id="messages"></div>
   <input disabled placeholder="Connecting..." id="newmessage"></input>
@@ -62,12 +81,15 @@ channel.open(handler);
 
 // Enter-button handler, i.e. send a message.
 newmessage.on('keypress', function(e) {
-  if (e.key === 'Enter' && newmessage.val() !== '') {
+  if (e.key === 'Enter' && newmessage.val() !== ''){
     $.post('/send', {data: newmessage.val()});
     newmessage.val('');
   };
 });
-
+$("#button1").click(function(){
+  $.post('/send', {data: newmessage.val()});
+  newmessage.val('');
+});
 // Force all focus to the input box.
 newmessage.on('blur', function(e) {
   newmessage.focus();
